@@ -7,7 +7,7 @@ module.exports = router
 router.get('/', async(req, res) => {
     res.send('Lets play a game')
 })
-
+ 
 // If win or lose url
 router.get('/win', async(req, res) => {
     res.send('yay you win!')
