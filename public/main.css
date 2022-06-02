@@ -1,0 +1,22 @@
+body{
+  background-color: black;
+}
+
+.game-title {
+  position:absolute;
+  font-size: 100px;
+  color: white;
+  font-family: 'Rubik Glitch', cursive;
+}
+.play-button{
+  text-align: center;
+  padding: 20px 30px;
+  color: white;
+}
+.gameboard{
+  margin-right: center;
+  margin-left: center;
+  margin: 0 auto;
+  border-spacing: 10px;
+  border-collapse: collapse;
+}
