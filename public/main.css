@@ -20,3 +20,14 @@ body{
   border-spacing: 10px;
   border-collapse: collapse;
 }
+
+.hint{
+  position: absolute;
+  text-align: center;
+  
+}
+img {
+  max-height : 200px;
+max-width: 200px
+\}
+
