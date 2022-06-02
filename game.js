@@ -14,13 +14,15 @@
 //  making handler / listen for single click event to toggle pictures
 
 function start() {
-    bindEventListeners(document.getElementsByClassName('')[0].children)
+    bindEventListeners(document.getElementsByTagName('td'))
 }
 
-function bindEventListeners(dots) {
-    for (var i = 0; i < dots.length; i++) {
+function bindEventListeners(cells) {
+    for (var i = 0; i < cells.length; i++) {
         // BIND YOUR EVENT LISTENERS HERE
-        dots[i].addEventListener('click', hideCharacter)
-        dots[i].addEventListener('dblclick', guessCharacter)
+        cells[i].addEventListener('click', hideCharacter)
+        cells[i].addEventListener('dblclick', guessCharacter)
+            // create an image tag
+        cells[i].children[0].src = characters[i].image
     }
 }
