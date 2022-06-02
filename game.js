@@ -1,10 +1,10 @@
-const heroData = require('./characters.json')
+
 
 const arr = heroData.heros
 
 function getRandomHero(arr){
-let rand = Math.floor(Math.random*arr.length)
-return rand
+let rand = Math.floor((Math.random)*arr.length)
+return rand[i]
 }
 
 module.exports ={
