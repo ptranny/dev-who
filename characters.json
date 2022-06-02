@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Moana",
       "age": "19",
-      "image": "/images/characters.jpg",
+      "image": "/images/characters1.jpg",
       "weapon": "Power of the Ocean"
     },
     {
@@ -46,7 +46,7 @@
       "id": 7,
       "name": "Obi-Wan",
       "age": "57",
-      "image": "/images/characters77.jpg",
+      "image": "/images/characters7.jpg",
       "weapon": "Light saber + force"
     }
     {
