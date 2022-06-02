@@ -10,5 +10,5 @@ router.get('/', async(req, res) => {
 
 // If win or lose url
 router.get('/win', async(req, res) => {
-    res.send('yay you win!')
+    res.render('result')
 })
