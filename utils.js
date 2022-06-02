@@ -2,9 +2,8 @@ const arr = heroData.heros
 
 function getRandomHero(arr){
 let rand = Math.floor(Math.random()*arr.length)
-return rand[i]
+return arr[rand]
 }
 
-module.exports ={
+module.exports =
   getRandomHero
-}
