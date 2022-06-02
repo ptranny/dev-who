@@ -13,3 +13,10 @@ body{
   padding: 20px 30px;
   color: white;
 }
+.gameboard{
+  margin-right: center;
+  margin-left: center;
+  margin: 0 auto;
+  border-spacing: 10px;
+  border-collapse: collapse;
+}
