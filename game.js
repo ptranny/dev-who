@@ -18,9 +18,20 @@
 //  making handler / listen for single click event to toggle pictures
 //  making handler /listen for onclick event of next hint
 
-const characters = require('./characters.json')
+// import characters from '/characters.json'
 
-const getRandomHero = require(getRandomHero)
+// Get the data
+const dataPath = '/characters.json'
+
+async function getData(dataPath) {
+  let response = await fetch(dataPath)
+  let data = await response.text()
+  let parsedData = JSON.parse(data)
+  console.log(parsedData)
+  return parsedData
+}
+
+let characters = await getData(dataPath)
 
 const RANDOMHERO = getRandomHero(characters['characters'])
 
@@ -63,6 +74,7 @@ function doubleClick(e) {
 
 function start() {
   bindEventListeners(document.getElementsByTagNames('td'))
+  console.log(document.innerHTML)
 }
 
 function bindEventListeners(cells) {
@@ -76,3 +88,10 @@ function bindEventListeners(cells) {
 }
 
 start()
+
+// UTILS
+
+function getRandomHero(arr) {
+  let rand = Math.floor(Math.random() * arr.length)
+  return arr[rand]
+}
