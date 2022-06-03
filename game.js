@@ -62,7 +62,7 @@ function doubleClick(e) {
 }
 
 function start() {
-  bindEventListeners(document.getElementById('td'))
+  bindEventListeners(document.getElementsByTagNames('td'))
 }
 
 function bindEventListeners(cells) {
