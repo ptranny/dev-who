@@ -43,7 +43,7 @@ async function start(dataPath) {
     }
   }
 
-  const RANDOMHERO = getRandomHero(characters['characters'])
+  const RANDOMHERO = getRandomHero(characters)
 
   function hideCharacter(e) {
     //return element clicked
