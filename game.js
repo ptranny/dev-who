@@ -63,12 +63,11 @@ async function start(dataPath) {
         //increment hint index
         //create var called current hint
         //update innerhtml with current hint
-
-        HINTINDEX++
         const hintArray = ['age', 'weapon']
         let currentHint = `Hint: The ${hintArray[HINTINDEX]} is ${
       RANDOMHERO[hintArray[HINTINDEX]]
     }`
+        HINTINDEX++
         document.getElementById('hint').innerHTML = currentHint
     }
 
