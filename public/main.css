@@ -3,10 +3,18 @@ body{
 }
 
 .game-title {
-  position:absolute;
+  
   font-size: 100px;
   color: white;
   font-family: 'Rubik Glitch', cursive;
+}
+td{
+  width: 9vw;
+  height: 9vw;
+  text-align: center;
+  font-size:300%;
+  border: white solid 3px;
+  color:  white;
 }
 .play-button{
   text-align: center;
@@ -21,7 +29,10 @@ body{
   margin-left: center;
   margin: 0 auto;
   border-spacing: 10px;
+  color: black;
+  
   border-collapse: collapse;
+
 }
 
 .hint{
@@ -30,8 +41,9 @@ body{
   
 }
 img {
-  max-height : 200px;
-  max-width: 200px
+  max-height : 9vw;
+  max-width: 9vw;
 }
+
 
 
