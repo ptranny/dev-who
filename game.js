@@ -23,71 +23,65 @@
 // Get the data
 const dataPath = '/characters.json'
 
-async function getData(dataPath) {
+start(dataPath)
+
+async function start(dataPath) {
   let response = await fetch(dataPath)
   let data = await response.text()
-  let parsedData = JSON.parse(data)
-  console.log(parsedData)
-  return parsedData
-}
+  let characters = JSON.parse(data).characters
 
-let characters = await getData(dataPath)
+  bindEventListeners(document.getElementsByTagName('td'))
 
-const RANDOMHERO = getRandomHero(characters['characters'])
+  function bindEventListeners(cells) {
+    for (let i = 0; i < cells.length; i++) {
+      console.log(cells[i])
+      // BIND YOUR EVENT LISTENERS HERE
+      cells[i].addEventListener('click', hideCharacter)
+      cells[i].addEventListener('dblclick', guessCharacter)
+      // create an image tag
+      cells[i].children[0].src = characters[i].image
+    }
+  }
 
-function hideCharacter(e) {
-  //return element clicked
-  //find the class to change using id from target
-  //toggle is hidden class
+  const RANDOMHERO = getRandomHero(characters['characters'])
 
-  let elementId = e.target.id
+  function hideCharacter(e) {
+    //return element clicked
+    //find the class to change using id from target
+    //toggle is hidden class
 
-  let clickedCell = document.getElementById(elementId)
+    let elementId = e.target.id
 
-  clickedCell.classList.toggle('isHidden')
-}
+    let clickedCell = document.getElementById(elementId)
 
-let HINTINDEX = 0
-function nextHint() {
-  //increment hint index
-  //create var called current hint
-  //update innerhtml with current hint
+    clickedCell.classList.toggle('isHidden')
+  }
 
-  HINTINDEX++
-  const hintArray = ['age', 'weapon']
-  let currentHint = `Hint: The ${hintArray[HINTINDEX]} is ${
-    RANDOMHERO[hintArray[HINTINDEX]]
-  }`
-  document.getElementById('hint').innerHTML = currentHint
-}
+  let HINTINDEX = 0
+  function nextHint() {
+    //increment hint index
+    //create var called current hint
+    //update innerhtml with current hint
 
-function doubleClick(e) {
-  //get id of cell clicked
-  //if id  == same td of random character
+    HINTINDEX++
+    const hintArray = ['age', 'weapon']
+    let currentHint = `Hint: The ${hintArray[HINTINDEX]} is ${
+      RANDOMHERO[hintArray[HINTINDEX]]
+    }`
+    document.getElementById('hint').innerHTML = currentHint
+  }
 
-  //then rediret to result partial
-  //change innerHTML of id=result
+  function guessCharacter(e) {
+    //get id of cell clicked
+    //if id  == same td of random character
 
-  if (e.target.id == RANDOMHERO.id) {
+    //then rediret to result partial
+    //change innerHTML of id=result
+
+    if (e.target.id == RANDOMHERO.id) {
+    }
   }
 }
-
-function start() {
-  bindEventListeners(document.getElementsByTagNames('td'))
-  console.log(document.innerHTML)
-}
-
-function bindEventListeners(cells) {
-  for (var i = 0; i < cells.length; i++) {
-    // BIND YOUR EVENT LISTENERS HERE
-    cells[i].addEventListener('click', hideCharacter)
-    cells[i].addEventListener('dblclick', guessCharacter)
-    // create an image tag
-    cells[i].children[0].src = characters[i + 1].image
-  }
-}
-
-start()
 
 // UTILS
 
