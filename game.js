@@ -1,7 +1,7 @@
-// read characters
-const characters = require('./characters.json')
+// get characters
 
-// make JSON.parse('characters)
+//import random character func
+//  global character random character
 
 // generate the game board first
 // pull out all the td cells
@@ -11,19 +11,73 @@ const characters = require('./characters.json')
 
 //  making handler / listen for onclick event of character guess
 
-//  making handler /listen for onclick event of next hint
+//create replay button
+
 
 //  making handler / listen for single click event to toggle pictures
 
-function start() {
-  bindEventListeners(document.getElementsByClassName('')[0].children)
+
+const characters = require('./characters.json')
+
+const getRandomHero = require(getRandomHero)
+
+
+const RANDOMHERO = getRandomHero(characters["characters"])
+
+function hideCharacter(e){
+//return element clicked
+//find the class to change using id from target
+//toggle is hidden class
+
+let elementId= e.target.id
+
+let clickedCell = document.getElementById(elementId)
+
+clickedCell.classList.toggle('isHidden')
+
+} 
+
+//  making handler /listen for onclick event of next hint
+let HINTINDEX = 0
+function nextHint(){
+  //increment hint index
+  //create var called current hint
+  //update innerhtml with current hint
+
+  HINTINDEX++
+  const hintArray = ['age','weapon']
+  let currentHint = `Hint: The ${hintArray[HINTINDEX]} is ${RANDOMHERO[hintArray[HINTINDEX]]}`
+  document.getElementById('hint').innerHTML = currentHint
 }
 
-function bindEventListeners(dots) {
-  for (var i = 0; i < dots.length; i++) {
+function doubleClick(e){
+ //get id of cell clicked 
+//if id  == same td of random character
+
+//then rediret to result partial
+//change innerHTML of id=result
+
+
+if(e.target.id ==RANDOMHERO.id){
+
+}
+
+}
+
+
+
+
+function start() {
+  bindEventListeners(document.getElementById('td'))
+}
+
+function bindEventListeners(cells) {
+  for (var i = 0; i < cells.length; i++) {
       // BIND YOUR EVENT LISTENERS HERE
-      dots[i].addEventListener('click', hideCharacter)
-      dots[i].addEventListener('dblclick', guessCharacter)
+      cells[i].addEventListener('click', hideCharacter)
+      cells[i].addEventListener('dblclick', guessCharacter)
+          // create an image tag
+      cells[i].children[0].src = characters[i+1].image
   }
 }
 
