@@ -125,7 +125,7 @@ footer{
 
 }
 
-.playAgain-button,#hint-button, .play-button{
+.playAgain-button,#nextHint, .play-button{
   appearance: none;
   background-color: transparent;
   border: 2px solid #05a4ca;
@@ -167,5 +167,9 @@ footer{
 .button-28:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.isHidden {
+  opacity: 0.4
 }
    
