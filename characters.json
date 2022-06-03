@@ -48,15 +48,14 @@
       "age": "57",
       "image": "/images/characters7.jpg",
       "weapon": "Light saber + force"
-    }
+    },
     {
       "id": 8,
       "name": "Naruto",
       "age": "12",
       "image": "/images/characters8.jpg",
       "weapon": "Jutsus"
-    }
-   
+    },
     {
       "id": 9,
       "name": "Saitama",
