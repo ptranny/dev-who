@@ -1,0 +1,68 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Moana",
+      "age": "19",
+      "image": "/images/characters1.jpg",
+      "weapon": "Power of the Ocean"
+    },
+    {
+      "id": 2,
+      "name": "Captain Marvel",
+      "age": "29",
+      "image": "/images/characters2.jpg",
+      "weapon": "Laser beams + flight"
+    },
+    {
+      "id": 3,
+      "name": "Rey",
+      "age": "19",
+      "image": "/images/characters3.jpg",
+      "weapon": "Blue lightsaber + force"
+    },
+    {
+      "id": 4,
+      "name": "Wonder Woman",
+      "age": "800",
+      "image": "/images/characters4.jpg",
+      "weapon": "Lasso + sheild & sword"
+    },
+    {
+      "id": 5,
+      "name": "The Hulk",
+      "age": "Matthew",
+      "image": "/images/characters5.jpg",
+      "weapon": "Strength + fists"
+    },
+    {
+      "id": 6,
+      "name": "Batman",
+      "age": "26",
+      "image": "/images/characters6.jpg",
+      "weapon": "Stealth + Batarangs"
+    },
+    {
+      "id": 7,
+      "name": "Obi-Wan",
+      "age": "57",
+      "image": "/images/characters7.jpg",
+      "weapon": "Light saber + force"
+    }
+    {
+      "id": 8,
+      "name": "Naruto",
+      "age": "12",
+      "image": "/images/characters8.jpg",
+      "weapon": "Jutsus"
+    }
+   
+    {
+      "id": 9,
+      "name": "Saitama",
+      "age": "25",
+      "image": "/images/characters9.jpg",
+      "weapon": "Strength + fists"
+    } 
+  ]
+}

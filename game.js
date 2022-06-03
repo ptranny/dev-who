@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 // get characters
 
 //import random character func
 //  global character random character
 
+=======
+// read characters
+// make JSON.parse('characters)
+
+>>>>>>> e1056124d78ed16aeeca24f5c2c9ccd25fe89049
 // generate the game board first
 // pull out all the td cells
 // put an image
 // put an image in each cell
 // attach onclick and ondoubleclick listeners
+<<<<<<< HEAD
 
 //  making handler / listen for onclick event of character guess
 
@@ -80,4 +87,25 @@ function bindEventListeners(cells) {
       cells[i].children[0].src = characters[i+1].image
   }
 }
+=======
+>>>>>>> e1056124d78ed16aeeca24f5c2c9ccd25fe89049
 
+//  making handler / listen for onclick event of character guess
+
+//  making handler /listen for onclick event of next hint
+
+//  making handler / listen for single click event to toggle pictures
+
+function start() {
+    bindEventListeners(document.getElementsByTagName('td'))
+}
+
+function bindEventListeners(cells) {
+    for (var i = 0; i < cells.length; i++) {
+        // BIND YOUR EVENT LISTENERS HERE
+        cells[i].addEventListener('click', hideCharacter)
+        cells[i].addEventListener('dblclick', guessCharacter)
+            // create an image tag
+        cells[i].children[0].src = characters[i].image
+    }
+}
