@@ -74,3 +74,5 @@ function bindEventListeners(cells) {
     cells[i].children[0].src = characters[i + 1].image
   }
 }
+
+start()
