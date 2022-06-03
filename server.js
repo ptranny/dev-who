@@ -16,8 +16,9 @@ server.set('view engine', 'hbs')
 module.exports = server
 
 // load games
+
 server.get('/', async (req, res) => {
-  res.send('Click to start game')
+  res.render('home')
 })
 
 server.use('/game', routes)
