@@ -1,96 +1,91 @@
-// get characters
-
-//import random character func
-//  global character random character
-// read characters
-// make JSON.parse('characters)
-
-// generate the game board first
-// pull out all the td cells
-// put an image
-// put an image in each cell
-// attach onclick and ondoubleclick listeners
-
-//  making handler / listen for onclick event of character guess
-
-//create replay button
-
-//  making handler / listen for single click event to toggle pictures
-//  making handler /listen for onclick event of next hint
-
-// import characters from '/characters.json'
-
-// Get the data
 const dataPath = '/characters.json'
 
-start(dataPath)
+main(dataPath)
 
-async function start(dataPath) {
+async function main(dataPath) {
+  // Get hero data from database
   let response = await fetch(dataPath)
-  let data = await response.text()
-  let characters = JSON.parse(data).characters
+  let data = await response.json()
+  let characters = data.characters
 
-  bindEventListeners(document.querySelectorAll('td img'))
+  // Randomly select a character
+  const randomHero = getRandomHero(characters)
 
-  function bindEventListeners(cells) {
-    for (let i = 0; i < cells.length; i++) {
-      // BIND YOUR EVENT LISTENERS HERE
-      cells[i].addEventListener('click', hideCharacter)
-      cells[i].addEventListener('dblclick', guessCharacter)
-      // create an image tag
-      cells[i].src = characters[i].image
+  // Get elements
+  let cells = document.querySelectorAll('td img')
+  let nextHintButton = document.getElementById('nextHint')
+  let hintDisplay = document.getElementById('hint')
+
+  // Create a generator object to keep track of which attribute we're currently displaying
+  function* hintsGenerator() {
+    let attributes = Object.entries(randomHero.attributes)
+    for (let i = 0; i < attributes.length; i++) {
+      yield attributes[i]
     }
   }
 
-  const RANDOMHERO = getRandomHero(characters)
-  console.log(RANDOMHERO)
+  let hints = hintsGenerator()
 
-  function hideCharacter(e) {
-    //return element clicked
-    //find the class to change using id from target
-    //toggle is hidden class
-
-    let elementId = e.target.id
-
-    let clickedCell = document.getElementById(elementId)
-
-    clickedCell.classList.toggle('isHidden')
+  // Environment variables to pass to helper/handler functions
+  const env = {
+    cells,
+    characters,
+    randomHero,
+    hints,
+    hintDisplay,
+    nextHintButton,
   }
 
-  let HINTINDEX = 0
-
-  function nextHint() {
-    //increment hint index
-    //create var called current hint
-    //update innerhtml with current hint
-    const hintArray = ['age', 'weapon']
-    let currentHint = `Hint: The ${hintArray[HINTINDEX]} is ${
-      RANDOMHERO[hintArray[HINTINDEX]]
-    }`
-    HINTINDEX++
-    document.getElementById('hint').innerHTML = currentHint
+  // Set up the game
+  // Populate game grid with images and add event listeners
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener('click', hideCharacter)
+    cells[i].addEventListener('dblclick', guessCharacter(env))
+    cells[i].src = characters[i].image
   }
 
-  let nextHintButton = document.getElementById('nextHint')
-  nextHintButton.addEventListener('click', nextHint)
+  // Add event listener for next hint
+  nextHintButton.addEventListener('click', nextHint(env))
+}
 
-  function guessCharacter(e) {
-    //get id of cell clicked
-    //if id  == same td of random character
-    //then rediret to result partial
-    //change innerHTML of id=result
-    const cellClicked = e.target.id
-    if (Number(e.target.id) == RANDOMHERO.id) {
+// HELPER FUNCTIONS
+
+function getRandomHero(arr) {
+  let rand = Math.floor(Math.random() * arr.length)
+  return arr[rand]
+}
+
+// EVENT HANDLERS
+
+function hideCharacter(e) {
+  let clickedCell = document.getElementById(e.target.id)
+  clickedCell.classList.toggle('isHidden')
+}
+
+function nextHint(env) {
+  let { hints, hintDisplay, nextHintButton } = env
+  function eventHandler(e) {
+    // Get the next attribute
+    let currentAttribute = hints.next()
+    // If this is the last attribute make the nextHintButton inert
+    if (currentAttribute.done) {
+      nextHintButton.replaceWith(nextHintButton.cloneNode(true))
+      // Display the attribute
+    } else {
+      hintDisplay.innerHTML = `Hint: ${currentAttribute.value[0]} is ${currentAttribute.value[1]}`
+    }
+  }
+  return eventHandler
+}
+
+function guessCharacter(env) {
+  let { characters, randomHero } = env
+  function eventHandler(e) {
+    if (characters[e.target.id - 1] === randomHero) {
       alert('Congrats you won')
     } else {
       alert('Ohh noo you lost! Better luck next time :)')
     }
   }
-}
-
-// UTILS
-
-function getRandomHero(arr) {
-  let rand = Math.floor(Math.random() * arr.length)
-  return arr[rand]
+  return eventHandler
 }
