@@ -43,6 +43,7 @@ async function start(dataPath) {
     }
 
     const RANDOMHERO = getRandomHero(characters)
+    console.log(RANDOMHERO)
 
     function hideCharacter(e) {
         //return element clicked
@@ -75,13 +76,12 @@ async function start(dataPath) {
     nextHintButton.addEventListener('click', nextHint)
 
     function guessCharacter(e) {
-        console.log('inside')
-            //get id of cell clicked
-            //if id  == same td of random character
-            //then rediret to result partial
-            //change innerHTML of id=result
+        //get id of cell clicked
+        //if id  == same td of random character
+        //then rediret to result partial
+        //change innerHTML of id=result
         const cellClicked = e.target.id
-        if (e.target.id == RANDOMHERO.id) {
+        if (Number(e.target.id) == RANDOMHERO.id) {
             alert('Congrats you won')
         } else {
             alert('Ohh noo you lost! Better luck next time :)')
