@@ -16,24 +16,17 @@ async function main(dataPath) {
   let nextHintButton = document.getElementById('nextHint')
   let hintDisplay = document.getElementById('hint')
 
-  // Create a generator object to keep track of which attribute we're currently displaying
-  function* hintsGenerator() {
-    let attributes = Object.entries(randomHero.attributes)
-    for (let i = 0; i < attributes.length; i++) {
-      yield attributes[i]
-    }
-  }
-
-  let hints = hintsGenerator()
+  // Get iterator for attributes
+  let hints = hintsGenerator(randomHero)
 
   // Environment variables to pass to helper/handler functions
   const env = {
-    cells,
-    characters,
-    randomHero,
-    hints,
-    hintDisplay,
-    nextHintButton,
+    cells, // HTMLcollection of game cell nodes
+    characters, // Array of character objects
+    randomHero, // Character object
+    hintDisplay, // node object for hint element
+    nextHintButton, // node object for hint button element
+    hints, // Iterator for attributes
   }
 
   // Set up the game
@@ -44,7 +37,7 @@ async function main(dataPath) {
     cells[i].src = characters[i].image
   }
 
-  // Add event listener for next hint
+  // Add event listener for next hint button
   nextHintButton.addEventListener('click', nextHint(env))
 }
 
@@ -53,6 +46,15 @@ async function main(dataPath) {
 function getRandomHero(arr) {
   let rand = Math.floor(Math.random() * arr.length)
   return arr[rand]
+}
+
+// We are using a generator function as a state machine so that we don't have to declare a global variable
+// to keep track of where in the attributes array we are
+function* hintsGenerator(character) {
+  let attributes = Object.entries(character.attributes)
+  for (let attribute of attributes) {
+    yield attribute
+  }
 }
 
 // EVENT HANDLERS
