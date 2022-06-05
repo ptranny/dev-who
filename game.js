@@ -10,14 +10,13 @@ async function main(dataPath) {
 
   // Randomly select a character
   const randomHero = getRandomHero(characters)
+  // Get iterator for attributes
+  let hints = hintsGenerator(randomHero)
 
-  // Get elements
+  // Get HTML elements
   let cells = document.querySelectorAll('td img')
   let nextHintButton = document.getElementById('nextHint')
   let hintDisplay = document.getElementById('hint')
-
-  // Get iterator for attributes
-  let hints = hintsGenerator(randomHero)
 
   // Environment variables to pass to helper/handler functions
   const env = {
@@ -30,6 +29,13 @@ async function main(dataPath) {
   }
 
   // Set up the game
+  setUpGame(env)
+}
+
+// HELPER FUNCTIONS
+
+function setUpGame(env) {
+  let { cells, nextHintButton, characters } = env
   // Populate game grid with images and add event listeners
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener('click', hideCharacter)
@@ -40,8 +46,6 @@ async function main(dataPath) {
   // Add event listener for next hint button
   nextHintButton.addEventListener('click', nextHint(env))
 }
-
-// HELPER FUNCTIONS
 
 function getRandomHero(arr) {
   let rand = Math.floor(Math.random() * arr.length)
